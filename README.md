@@ -1,7 +1,7 @@
-# SRE Dashboard
+# SLO Generator Dashboard
 
-SRE Dashboard is a dashboard for viewing, editing and analyzing Service Level
-Objectives. It works in tandem with the `slo-generator` and requires the 
+SLO Generator Dashboard is a dashboard for viewing, editing and analyzing Service 
+Level Objectives. It works in tandem with the `slo-generator` and requires the 
 `Bigquery` exporter to be setup as it queries all data from BigQuery. 
 
 SRE Dashboard is useful for both SRE teams and application teams to get a feel 
