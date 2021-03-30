@@ -243,7 +243,7 @@
                   class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                 >
                   <svg
-                    v-on:click="navigateSLO(i, 'view')"
+                    v-on:click="navigateSLO(report, 'view')"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -269,7 +269,7 @@
                   class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                 >
                   <svg
-                    v-on:click="navigateSLO(i, 'edit')"
+                    v-on:click="navigateSLO(report, 'edit')"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -289,7 +289,7 @@
                   class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                 >
                   <svg
-                    v-on:click="navigateSLO(i, 'remove')"
+                    v-on:click="navigateSLO(report, 'remove')"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"

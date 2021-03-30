@@ -79,10 +79,12 @@ export const fmtMixin = {
 export const sloMixin = {
   methods: {
     navigateSLO(data: Object, method: string) {
+      console.log(data);
       var name = this.getSLOName(data);
       this.$router.push({ path: `/slo/${name}/${method}` });
     },
     getSLOName(data: Object) {
+      console.log(data);
       return data["service_name"] + "-" + data["feature_name"] + "-" + data["slo_name"];
     },
   },
