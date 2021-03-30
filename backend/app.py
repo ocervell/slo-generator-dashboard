@@ -26,7 +26,7 @@ app.config['JSON_SORT_KEYS'] = False
 
 
 @app.route('/slos/keys')
-def get_columns():
+def get_keys():
     """List all BigQuery column names matching a query.
     
     Args:
@@ -44,7 +44,7 @@ def get_columns():
 
 
 @app.route('/slos/values')
-def query_distinct_fields():
+def get_values():
     """List all BigQuery column values corresponding to column name.
 
     Args:
@@ -112,7 +112,7 @@ def query_last_report():
     ORDER BY alert DESC, error_budget_burn_rate DESC
     LIMIT {limit} OFFSET {offset}
     """
-    # app.logger.info(query)
+    app.logger.info(query)
     result = utils.run_bq_query(query)
     # app.logger.debug(result)
     return result
