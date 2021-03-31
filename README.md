@@ -1,15 +1,19 @@
-# SLO Generator Dashboard
+# SLO Generator UI
 
-SLO Generator Dashboard is a dashboard for viewing, editing and analyzing Service 
+SLO Generator UI is a dashboard for viewing, editing and analyzing Service 
 Level Objectives. It works in tandem with the `slo-generator` and requires the 
 `Bigquery` exporter to be setup as it queries all data from BigQuery. 
 
-SLO Generator Dashboard is useful for both SRE teams and application teams to get a feel 
+SLO Generator UI is useful for both SRE teams and application teams to get a feel 
 of where they're at in their SRE journey, SLO adoption and SLO targets.
 
+## Requirements
+* python 3.8
+* npm
+
 ## Backend
-SLO Generator Dashboard backend is written in Flask (Python). It is a simple 
-interfacing layer to make queries to BigQuery.
+SLO Generator UI backend is written in Flask (Python). It is a simple 
+interfacing API layer to make queries to BigQuery.
 
 ### Setup
 ```
@@ -25,17 +29,19 @@ flask run
 ```
 
 ## Frontend
-SLO Generator Dashboard frontend is written in VueJS 3 for the UI framework, 
+SLO Generator UI frontend is written in VueJS 3 for the UI framework, 
 and Tailwind CSS for the HTML / CSS styling.
 
 ### Project setup
 
 ### Compiles and hot-reloads for development
 ```
+cd frontend/
 npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
+cd frontend/
 npm run build
 ```
