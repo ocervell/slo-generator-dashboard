@@ -114,42 +114,78 @@ limitations under the License.
           Last 24 hours
         </span>
 
-        <svg
-          v-if="!toggleLast24Hours"
-          v-on:click="toggleLast24Hours = !toggleLast24Hours"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 22 22"
-          class="h-6 w-6"
-          stroke="white"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-          />
-        </svg>
-        <svg
-          v-if="toggleLast24Hours"
-          v-on:click="toggleLast24Hours = !toggleLast24Hours"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 22 22"
-          class="h-6 w-6"
-          stroke="white"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M20 12H4"
-          />
-        </svg>
+        <ToggleIcon v-model="toggleLast24Hours"/>
       </div>
 
       <!-- SLO Data Table-->
-      <SLODailyTable/>
+      <SLODailyTable :class="toggleLast24Hours ? '' : 'hidden'"/>
+    </div>
+
+
+    <!-- "Last Week" section -->
+    <div class="text-lg text-gray-600">
+      <!-- Roller header -->
+      <div
+        class="px-5 py-3 my-2 flex items-center shadow-md rounded-lg bg-gray-900"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 22 22"
+          class="h-8 w-8"
+          stroke="white"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+
+        <span class="px-5 uppercase font-semibold text-gray-300">
+          Last week
+        </span>
+
+        <ToggleIcon v-model="toggleLastWeek"/>
+      </div>
+
+      <!-- SLO Data Table-->
+      <SLODailyTable :class="toggleLastWeek ? '' : 'hidden'"/>
+
+    </div>
+
+    <!-- "Last Month" section -->
+    <div class="text-lg text-gray-600">
+      <!-- Roller header -->
+      <div
+        class="px-5 py-3 my-2 flex items-center shadow-md rounded-lg bg-gray-900"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 22 22"
+          class="h-8 w-8"
+          stroke="white"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+
+        <span class="px-5 uppercase font-semibold text-gray-300">
+          Last month
+        </span>
+
+        <ToggleIcon v-model="toggleLastMonth"/>
+      </div>
+
+      <!-- SLO Data Table-->
+      <SLODailyTable :class="toggleLastMonth ? '' : 'hidden'"/>
+
     </div>
 
     <!-- New SLO button -->
@@ -180,16 +216,20 @@ limitations under the License.
 import { defineComponent } from "vue";
 import SLODailyTable from "../components/SLODailyTable.vue";
 import Card from "../components/Card.vue";
+import ToggleIcon from "../components/icons/ToggleIcon.vue";
 
 export default defineComponent({
   data() {
     return {
-      toggleLast24Hours: true,
+      toggleLast24Hours: false,
+      toggleLastWeek: false,
+      toggleLastMonth: false
     };
   },
   components: {
     Card,
-    SLODailyTable
+    SLODailyTable,
+    ToggleIcon
   },
 });
 </script>

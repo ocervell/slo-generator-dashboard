@@ -14,7 +14,7 @@
 #
 # stage1 as builder
 FROM node:12-alpine as builder
-WORKDIR /app
+WORKDIR /app/frontend
 COPY package*.json ./
 RUN npm install
 COPY . .
@@ -22,6 +22,7 @@ RUN npm run build
 
 # stage 2 as production-build
 FROM nginx:alpine as production-build
-COPY --from=builder /app/dist /app
+COPY --from=builder /app/frontend/dist /app
 COPY nginx.conf /etc/nginx/nginx.conf
-# ENTRYPOINT ["nginx", "-g", "daemon off;"]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

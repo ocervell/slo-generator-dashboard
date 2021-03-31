@@ -169,6 +169,7 @@ def run_bq_query(query):
     Returns:
         list: List of records matching the query.
     """
+    print('Running BQ query ...')
     query_job = bq_client.query(query)
     df = query_job.to_dataframe()
     return df.to_json(orient='records')

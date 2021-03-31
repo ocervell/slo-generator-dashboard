@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from flask import Flask, jsonify, Response, request
+from flask_caching import Cache
 import constants
 import json
 import os
@@ -23,9 +24,13 @@ import utils
 utils.setup_logging()
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
+app.config['CACHE_TYPE'] = 'SimpleCache'
+app.config['CACHE_DEFAULT_TIMEOUT'] = '60'
+cache = Cache(app)
 
 
 @app.route('/slos/keys')
+@cache.cached(timeout=60)
 def get_keys():
     """List all BigQuery column names matching a query.
     
@@ -44,6 +49,7 @@ def get_keys():
 
 
 @app.route('/slos/values')
+@cache.cached(timeout=60)
 def get_values():
     """List all BigQuery column values corresponding to column name.
 
@@ -76,6 +82,7 @@ def get_values():
 
 
 @app.route('/slos/last_report')
+@cache.cached(timeout=60)
 def query_last_report():
     """Query last report table.
 
@@ -119,6 +126,7 @@ def query_last_report():
 
 
 @app.route('/slos/last_report_count')
+@cache.cached(timeout=60)
 def count_last_report():
     query = f"""
     SELECT COUNT(*) AS count FROM `{constants.BIGQUERY_LAST_REPORT_TABLE_ID}`
@@ -129,6 +137,7 @@ def count_last_report():
 
 
 @app.route('/slos/all_reports')
+@cache.cached(timeout=60)
 def query_dataset():
     query_job = utils.bq_client.list_rows(
         constants.BIGQUERY_LAST_REPORT_TABLE_ID, max_results=50)
@@ -189,3 +198,7 @@ def test_slo_config(name):
             "errorMessage": f"Test failed: {repr(e)}",
             "traceback": traceback.format_exc()
         }
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
